@@ -13,27 +13,21 @@ const dicePic = document.getElementById('dicePic');
 
 score1.textContent = 0;
 score2.textContent = 0;
-//dicePic.classList.add('hidden');
 let currentScore = 0;
 const scores = [0, 0];
 let activePlayer = 1;
 let playing = true;
 
+//Fonction Changement de joueur
 function switchPlayer() {
     currentScore = 0;
     document.getElementById(`currentScore-${activePlayer}`).textContent = currentScore;
    activePlayer = activePlayer == 1 ? 2 : 1;
-    /*if (activePlayer = 1) {
-        activePlayer = 2
-    } else {
-        activePlayer = 1
-    };*/
-    
     player1.classList.toggle('isActive');
     player2.classList.toggle('isActive');
 };
 
-
+//Bouton de lancer du dé
 btnRoll.addEventListener('click', function () {
     if (playing) {
     let roll = Math.floor(Math.random() * ( 7 - 1) + 1);
@@ -48,15 +42,14 @@ btnRoll.addEventListener('click', function () {
     }
 });
 
-let active = 1;
-
+//Bouton Hold
 btnHold.addEventListener('click', function () {
     if (playing) {
         scores[activePlayer] += currentScore;
         document.getElementById(`score-${activePlayer}`).textContent = scores[activePlayer];
         document.getElementById('currentScore-1').textContent = 0;
         document.getElementById('currentScore-2').textContent = 0;
-        if (scores[activePlayer] >= 10) {
+        if (scores[activePlayer] >= 100) {
             playing = false;
             dicePic.classList.add('hidden');
             document.getElementById(`score-${activePlayer}`).textContent = ' You Won ! \ud83d\ude00';
